@@ -41,7 +41,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   config.vm.provider "virtualbox" do |vb|
     vb.name = "frenchbox"
-    vb.customize ["modifyvm", :id, "--audio", "coreaudio"]
+    vb.customize ["modifyvm", :id, "--ioapic", "on", "--audio", "coreaudio", "--audiocontroller", "ac97"]
   #   vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
   #
