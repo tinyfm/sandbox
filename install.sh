@@ -37,6 +37,7 @@ sudo chown -R mopidy /usr/share/jukebox/
 #sudo cp build/index.html.sample build/index.html
 
 git clone https://github.com/basilesimon/media-in-context-radio-jukebox-webapp.git jukebox-ui
+cd jukebox-ui && npm install && npm run build
 
 sudo mopidyctl local scan
 sudo update-rc.d mopidy enable
