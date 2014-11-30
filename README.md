@@ -15,6 +15,14 @@ cd frenchbox-vagrant && vagrant up
 
 An Web server should be running on `localhost:6680`.
 
+The content of the tracklist can be displayed with a small Node script:
+
+```bash
+npm install
+
+HOST=localhost node src/display-tracks.js
+```
+
 # Raspberry Pi
 
 ```bash
