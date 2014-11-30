@@ -50,6 +50,7 @@ cd PiFmRds/src
 make
 
 git clone https://github.com/basilesimon/media-in-context-radio-jukebox-webapp.git jukebox-ui
+cd jukebox-ui && npm install && npm run build
 
 # activate ipv6 (for raspberry)
 # sudo modprobe ipv6
