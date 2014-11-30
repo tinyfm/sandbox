@@ -13,7 +13,7 @@ wget -q -O /etc/apt/sources.list.d/mopidy.list http://apt.mopidy.com/mopidy.list
 
 sudo apt-get update
 sudo apt-get install -y mopidy mopidy-alsamixer pulseaudio pulseaudio-utils gstreamer0.10-plugins-ugly gstreamer0.10-alsa xdg-user-dirs git curl python-pip
-cp -f /vagrant/config/mopidy/mopidy.conf ~/.config/mopidy/
+cp -f /vagrant/config/mopidy/mopidy.conf /etc/mopidy/mopidy.conf
 
 # Node
 curl -sL https://deb.nodesource.com/setup | sudo bash -
@@ -24,3 +24,5 @@ sudo apt-get install -y build-essential nodejs
 #sudo cp build/index.html.sample build/index.html
 
 git clone https://github.com/basilesimon/media-in-context-radio-jukebox-webapp.git jukebox-ui
+
+sudo service mopidy start
