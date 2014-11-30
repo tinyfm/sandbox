@@ -1,7 +1,5 @@
 #!/bin/sh
 
-sudo addgroup vagrant audio
-
 sudo rm -rf /usr/share/doc
 sudo rm -rf /usr/src/vboxguest*
 sudo rm -rf /usr/src/virtualbox-ose-guest*
@@ -21,9 +19,14 @@ sudo apt-get install avahi-daemon
 
 sudo apt-get install -y mopidy git curl mopidy-alsamixer gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly gstreamer0.10-alsa
 sudo adduser mopidy audio
-cp -f /vagrant/config/mopidy/mopidy.conf /etc/mopidy/mopidy.conf
 sudo mkdir -p /usr/share/tinyfm/{media,data,playlists}
 sudo chown -R mopidy /usr/share/tinyfm/
+
+# Vagrant specific
+if [[ $USER = 'vagrant' ]]; then
+  sudo addgroup vagrant audio
+  sudo cp -f /vagrant/config/mopidy/mopidy.conf /etc/mopidy/mopidy.conf
+fi
 
 # Node
 curl -sL https://deb.nodesource.com/setup | sudo bash -
@@ -34,16 +37,16 @@ sudo apt-get install -y build-essential nodejs
 # sudo apt-get -y install sox libsox-fmt-mp3
 
 # PiFM
-cd ~
+cd $HOME
 sudo apt-get -y install libsndfile1-dev
 git clone https://github.com/ChristopheJacquet/PiFmRds.git
 cd PiFmRds/src && make
 
-cd ~
+cd $HOME
 git clone https://github.com/tinyfm/mpd2fm.git
 cd mpd2fm && npm install
 
-cd ~
+cd $HOME
 git clone https://github.com/tinyfm/Client-app.git tinyfm-client-app
 cd tinyfm-client-app && npm install && npm run build
 
