@@ -29,15 +29,31 @@ sudo chown -R mopidy /usr/share/jukebox/
 # sudo apt-get install python-pip pulseaudio pulseaudio-utils
 
 # Node
-#curl -sL https://deb.nodesource.com/setup | sudo bash -
-#sudo apt-get install -y build-essential nodejs
+curl -sL https://deb.nodesource.com/setup | sudo bash -
+sudo apt-get install -y build-essential nodejs
 
 # UI
 #git clone git://github.com/meantimeit/jukepi.git && cd jukepi && git submodule update --init --recursive
 #sudo cp build/index.html.sample build/index.html
 
+# converter for mp3
+# sudo apt-get -y install libav-tools
+# sudo apt-get -y install sox libsox-fmt-mp3
+
+# to see wav
+sudo apt-get install gstreamer0.10-plugins-good
+
+# PiFM
+sudo apt-get -y install libsndfile1-dev
+git clone https://github.com/ChristopheJacquet/PiFmRds.git
+cd PiFmRds/src
+make
+
 git clone https://github.com/basilesimon/media-in-context-radio-jukebox-webapp.git jukebox-ui
 cd jukebox-ui && npm install && npm run build
+
+# activate ipv6 (for raspberry)
+# sudo modprobe ipv6
 
 sudo mopidyctl local scan
 sudo update-rc.d mopidy enable
