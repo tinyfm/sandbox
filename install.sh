@@ -19,11 +19,14 @@ sudo apt-get update
 sudo apt-get install avahi-daemon
 # sudo insserv avahi-daemon
 
-sudo apt-get install -y mopidy mopidy-alsamixer pulseaudio pulseaudio-utils gstreamer0.10-plugins-ugly gstreamer0.10-alsa xdg-user-dirs git curl python-pip
+sudo apt-get install -y mopidy git curl mopidy-alsamixer gstreamer0.10-plugins-ugly gstreamer0.10-alsa
 sudo adduser mopidy audio
 cp -f /vagrant/config/mopidy/mopidy.conf /etc/mopidy/mopidy.conf
 sudo mkdir -p /usr/share/jukebox/{media,data,playlists}
 sudo chown -R mopidy /usr/share/jukebox/
+
+# Optional
+# sudo apt-get install python-pip pulseaudio pulseaudio-utils
 
 # Node
 #curl -sL https://deb.nodesource.com/setup | sudo bash -

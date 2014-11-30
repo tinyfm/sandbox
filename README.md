@@ -14,3 +14,9 @@ cd frenchbox-vagrant && vagrant up
 # Usage
 
 An Web server should be running on `localhost:6680`.
+
+# Raspberry Pi
+
+```bash
+ssh pi@raspberrypi.local
+```
