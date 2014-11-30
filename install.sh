@@ -19,42 +19,35 @@ sudo apt-get update
 sudo apt-get install avahi-daemon
 # sudo insserv avahi-daemon
 
-sudo apt-get install -y mopidy git curl mopidy-alsamixer gstreamer0.10-plugins-ugly gstreamer0.10-alsa
+sudo apt-get install -y mopidy git curl mopidy-alsamixer gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly gstreamer0.10-alsa
 sudo adduser mopidy audio
 cp -f /vagrant/config/mopidy/mopidy.conf /etc/mopidy/mopidy.conf
-sudo mkdir -p /usr/share/jukebox/{media,data,playlists}
-sudo chown -R mopidy /usr/share/jukebox/
-
-# Optional
-# sudo apt-get install python-pip pulseaudio pulseaudio-utils
+sudo mkdir -p /usr/share/tinyfm/{media,data,playlists}
+sudo chown -R mopidy /usr/share/tinyfm/
 
 # Node
 curl -sL https://deb.nodesource.com/setup | sudo bash -
 sudo apt-get install -y build-essential nodejs
 
-# UI
-#git clone git://github.com/meantimeit/jukepi.git && cd jukepi && git submodule update --init --recursive
-#sudo cp build/index.html.sample build/index.html
-
 # converter for mp3
 # sudo apt-get -y install libav-tools
 # sudo apt-get -y install sox libsox-fmt-mp3
 
-# to see wav
-sudo apt-get install gstreamer0.10-plugins-good
-
 # PiFM
+cd ~
 sudo apt-get -y install libsndfile1-dev
 git clone https://github.com/ChristopheJacquet/PiFmRds.git
-cd PiFmRds/src
-make
+cd PiFmRds/src && make
 
-git clone https://github.com/basilesimon/media-in-context-radio-jukebox-webapp.git jukebox-ui
-cd jukebox-ui && npm install && npm run build
+cd ~
+git clone https://github.com/tinyfm/mpd2fm.git
+cd mpd2fm && npm install
 
-# activate ipv6 (for raspberry)
-# sudo modprobe ipv6
+cd ~
+git clone https://github.com/tinyfm/Client-app.git tinyfm-client-app
+cd tinyfm-client-app && npm install && npm run build
 
+# Enable services
 sudo mopidyctl local scan
 sudo update-rc.d mopidy enable
 sudo service mopidy start
