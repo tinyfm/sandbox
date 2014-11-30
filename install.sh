@@ -12,6 +12,13 @@ wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
 wget -q -O /etc/apt/sources.list.d/mopidy.list http://apt.mopidy.com/mopidy.list
 
 sudo apt-get update
+
+# ZeroConf discovery
+# Enables ssh in `ssh pi@raspberrypi.local`
+# http://elinux.org/RPi_Advanced_Setup#Setting_up_for_remote_access_.2F_headless_operation
+sudo apt-get install avahi-daemon
+# sudo insserv avahi-daemon
+
 sudo apt-get install -y mopidy mopidy-alsamixer pulseaudio pulseaudio-utils gstreamer0.10-plugins-ugly gstreamer0.10-alsa xdg-user-dirs git curl python-pip
 sudo adduser mopidy audio
 cp -f /vagrant/config/mopidy/mopidy.conf /etc/mopidy/mopidy.conf
@@ -19,8 +26,8 @@ sudo mkdir -p /usr/share/jukebox/{media,data,playlists}
 sudo chown -R mopidy /usr/share/jukebox/
 
 # Node
-curl -sL https://deb.nodesource.com/setup | sudo bash -
-sudo apt-get install -y build-essential nodejs
+#curl -sL https://deb.nodesource.com/setup | sudo bash -
+#sudo apt-get install -y build-essential nodejs
 
 # UI
 #git clone git://github.com/meantimeit/jukepi.git && cd jukepi && git submodule update --init --recursive
