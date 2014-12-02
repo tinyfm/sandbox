@@ -14,7 +14,7 @@ sudo apt-get update
 # ZeroConf discovery
 # Enables ssh in `ssh pi@raspberrypi.local`
 # http://elinux.org/RPi_Advanced_Setup#Setting_up_for_remote_access_.2F_headless_operation
-sudo apt-get install avahi-daemon
+sudo apt-get install -y avahi-daemon
 # sudo insserv avahi-daemon
 
 sudo apt-get install -y mopidy git curl mopidy-alsamixer gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly gstreamer0.10-alsa
@@ -36,16 +36,23 @@ sudo apt-get install -y build-essential nodejs
 # sudo apt-get -y install libav-tools
 # sudo apt-get -y install sox libsox-fmt-mp3
 
-# PiFM
+# 
+## PiFM
 cd $HOME
 sudo apt-get -y install libsndfile1-dev
 git clone https://github.com/ChristopheJacquet/PiFmRds.git
 cd PiFmRds/src && make
 
+## mpd2fm
 cd $HOME
 git clone https://github.com/tinyfm/mpd2fm.git
 cd mpd2fm && npm install
 
+sudo cp -f $HOME/mpd2fm/dist/init.d/mpd2fm /etc/init.d/mpd2fm
+sudo chmod a+x /etc/init.d/mpd2fm
+sudo update-rc.d mpd2fm defaults
+
+# Client-app
 cd $HOME
 git clone https://github.com/tinyfm/Client-app.git tinyfm-client-app
 cd tinyfm-client-app && npm install && npm run build
