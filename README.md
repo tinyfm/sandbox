@@ -1,6 +1,8 @@
-# tinyfm 
+# tinyfm
 
 > tinyfm sandbox image for development purpose.
+
+![Award winning project during Al Jazeera inaugural Canvas hackathon](canvas-working-hack.jpg)
 
 Because developing straight on a RaspberryPi is long and tedious, this Vagrant image helps to replicate a similar environment to the *tinyfm board*.
 
@@ -14,6 +16,11 @@ This project has been initiated as part of [Al Jazeera Canvas hackaton](http://c
 
 # Install
 
+The install procedures downloads a fair amount of useful packages, configuration files and services.
+It should take a **couple of minutes** to be ready.
+
+## Vagrant sandbox
+
 Requires *Vagrant* and *VirtualBox*.
 
 ```bash
@@ -21,7 +28,11 @@ git clone https://github.com/tinyfm/sandbox.git tinyfm-sandbox
 cd tinyfm-sandbox && vagrant up
 ```
 
-Things should download and install for a couple of minutes.
+## On a Raspberry Pi
+
+```bash
+wget -q -O - https://raw.githubusercontent.com/tinyfm/sandbox/master/install.sh | bash -
+```
 
 # Usage
 
