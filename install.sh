@@ -4,7 +4,7 @@ cd $HOME
 
 # Additional sources
 sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get upgrade -y
 sudo apt-get install -y apt-transport-https
 
 wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
@@ -41,11 +41,11 @@ sudo dpkg -i node_latest_armhf.deb && rm node_latest_armhf.deb
 
 
 # Audio conversion tools
-sudo apt-get -y install sox libsox-fmt-mp3
+sudo apt-get install -y sox libsox-fmt-mp3
 
 # PiFM
 cd $HOME
-sudo apt-get -y install libsndfile1-dev
+sudo apt-get install -y libsndfile1-dev
 git clone https://github.com/ChristopheJacquet/PiFmRds.git
 cd PiFmRds/src && make
 
